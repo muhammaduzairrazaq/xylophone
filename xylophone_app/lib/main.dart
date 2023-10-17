@@ -79,7 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> playSound(int noteIndex) async {
     final player = AudioPlayer();
-    await player.play(notes[noteIndex] as Source);
+    await player.play(AssetSource('note${noteIndex+1}.wav'));
+
   }
 
   void displayImage(int noteIndex) {

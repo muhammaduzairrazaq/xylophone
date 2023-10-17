@@ -36,8 +36,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>{
-    
+class _MyHomePageState extends State<MyHomePage> {
   final List<Color> colors = [
     Colors.red,
     Colors.orange,
@@ -73,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage>{
     'H',
     'I',
   ];
-  
 
   double h = 350.0;
 
@@ -92,7 +90,6 @@ class _MyHomePageState extends State<MyHomePage>{
         width: 100.0,
       );
     });
-    
 
     Future.delayed(Duration(seconds: 2), () {
       setState(() {
@@ -100,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage>{
       });
     });
   }
+
   Widget buildKey(
       {required int noteIndex,
       required Color color,
@@ -116,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage>{
                 borderRadius: BorderRadius.circular(5),
               ),
               fixedSize: Size(20, height),
-              side: const BorderSide(color: Colors.black, width: 2),
+              side: const BorderSide(color: Colors.white, width: 4),
             ),
             onPressed: () {
               playSound(noteIndex);
@@ -131,12 +129,7 @@ class _MyHomePageState extends State<MyHomePage>{
             ),
           ),
         ),
-        
-        Positioned.fill(child: images[noteIndex]), 
-      
-
-
-    
+        Positioned.fill(child: images[noteIndex]),
       ],
     );
   }
@@ -144,17 +137,26 @@ class _MyHomePageState extends State<MyHomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (int i = 0; i < colors.length; i++)
-              buildKey(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/back.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (int i = 0; i < colors.length; i++)
+                buildKey(
                   noteIndex: i,
                   color: colors[i],
                   height: h - 30.0 * i,
-                  name: names[i]),
-          ],
+                  name: names[i],
+                ),
+            ],
+          ),
         ),
       ),
     );

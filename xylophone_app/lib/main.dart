@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:file_picker/file_picker.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,18 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
     Color.fromARGB(255, 199, 19, 253),
   ];
 
-  final List<String> notes = [
-    'note1.wav',
-    'note2.wav',
-    'note3.wav',
-    'note4.wav',
-    'note5.wav',
-    'note6.wav',
-    'note7.wav',
-    'note5.wav',
-    'note6.wav',
-  ];
-
   final List<String> names = [
     'A',
     'B',
@@ -77,10 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> images = List.filled(9, Container());
 
-  Future<void> playSound(int noteIndex) async {
+  void playSound(int noteIndex) {
     final player = AudioPlayer();
-    await player.play(AssetSource('note${noteIndex+1}.wav'));
-
+    player.play(AssetSource('note${noteIndex + 1}.wav'));
   }
 
   void displayImage(int noteIndex) {
@@ -109,26 +97,83 @@ class _MyHomePageState extends State<MyHomePage> {
         Container(
           margin: const EdgeInsets.only(right: 9.0),
           child: TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: color,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
+              style: TextButton.styleFrom(
+                backgroundColor: color,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                fixedSize: Size(20, height),
+                side: const BorderSide(color: Colors.white, width: 4),
               ),
-              fixedSize: Size(20, height),
-              side: const BorderSide(color: Colors.white, width: 4),
-            ),
-            onPressed: () {
-              playSound(noteIndex);
-              displayImage(noteIndex);
-            },
-            child: Text(
-              name,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+              onPressed: () {
+                playSound(noteIndex);
+                displayImage(noteIndex);
+              },
+              child: Text(
+                name,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ),
+              onLongPress: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Customize'),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(''),
+                          SizedBox(height: 8),
+                          ElevatedButton(
+                            onPressed: () async {
+                              // Use FilePicker to allow the user to select an audio file
+                              FilePickerResult? result =
+                                  await FilePicker.platform.pickFiles(
+                                type: FileType.audio,
+                              );
+
+                              if (result != null) {
+                                // Handle the selected file(s) in 'result'
+                                // Example: Get the file path
+                                String? filePath = result.files.single.path;
+
+                                // Now you can use 'filePath' to work with the selected audio file
+                                // You may want to pass this path to your audio player or other logic.
+                              }
+                            },
+                            child: Text('Change Audio'),
+                          ),
+                          SizedBox(height: 8),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Handle Change Color
+                              // You can implement logic for changing colors here
+                            },
+                            child: Text('Change Color'),
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Apply'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }),
         ),
         Positioned.fill(child: images[noteIndex]),
       ],

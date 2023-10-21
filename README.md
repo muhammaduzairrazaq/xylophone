@@ -27,7 +27,7 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 [Awsome Books with ES6] <a name="about-project"></a>
+# 📖 [Xylophone App Flutter] <a name="about-project"></a>
 In this project I have created a Xylophone app in which you can customize colors and sounds.
 
 ## 🛠 Built With <a name="built-with"></a>
@@ -111,7 +111,7 @@ To run the project, execute the following command:
 ### Deployment
 
 You can deploy this project using:
-GitHub Pages
+Play Store
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

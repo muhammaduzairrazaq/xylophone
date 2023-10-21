@@ -93,7 +93,7 @@ Example command:
 
 ```sh
   cd my-folder
-  git clone: (git@github.com:muhammaduzairrazaq/profileFlutter.git)
+  git clone: (git@github.com:muhammaduzairrazaq/xylophone.git)
 ```
 
 ### Install

@@ -194,12 +194,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Color selectedColor = colors[noteIndex];
                                   return AlertDialog(
                                     title: Text('Select a Color'),
-                                    content: ColorPicker(
-                                      pickerColor: selectedColor,
-                                      onColorChanged: (Color color) {
-                                        selectedColor = color;
-                                      },
-                                      pickerAreaHeightPercent: 0.8,
+                                    content: SingleChildScrollView(
+                                      child: ColorPicker(
+                                        pickerColor: selectedColor,
+                                        onColorChanged: (Color color) {
+                                          selectedColor = color;
+                                        },
+                                        pickerAreaHeightPercent: 0.8,
+                                      ),
                                     ),
                                     actions: [
                                       TextButton(

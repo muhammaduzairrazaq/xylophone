@@ -14,6 +14,7 @@
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
+  - [🖼️ Running App Pictures](#pictures)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -65,6 +66,8 @@ In this project I have created a Xylophone app in which you can customize colors
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 - The Live Demo link will be available soon!
+
+## 🖼️ Running App Pictures <a name="pictures"></a>
 - ![image](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/fd98f17f-06d7-4119-b23d-a63ca1758ff9)
 - ![image](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/633e89f5-74e2-4d70-b637-877c85b95ef9)
 - ![image](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/64066022-570d-4e1c-87c2-6b80d5f80ce2)

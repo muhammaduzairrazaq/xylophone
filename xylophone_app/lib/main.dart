@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,10 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Colors.teal,
     Colors.blue,
     Colors.purple,
-    Colors.pink,
-    Color.fromARGB(255, 199, 19, 253),
   ];
-
   final List<String> names = [
     'A',
     'B',
@@ -58,17 +56,43 @@ class _MyHomePageState extends State<MyHomePage> {
     'E',
     'F',
     'G',
-    'H',
-    'I',
+  ];
+  final List<String> notes = [
+    'note1.wav',
+    'note2.wav',
+    'note3.wav',
+    'note4.wav',
+    'note5.wav',
+    'note6.wav',
+    'note7.wav',
+  ];
+  final List<String> notesDisplay = [
+    'note1.wav',
+    'note2.wav',
+    'note3.wav',
+    'note4.wav',
+    'note5.wav',
+    'note6.wav',
+    'note7.wav',
   ];
 
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
+  }
+
   double h = 350.0;
+  late Color selectedColor;
+  late String selectedNotePath;
 
   final List<Widget> images = List.filled(9, Container());
 
   void playSound(int noteIndex) {
     final player = AudioPlayer();
-    player.play(AssetSource('note${noteIndex + 1}.wav'));
+    player.play(AssetSource(notes[noteIndex]));
   }
 
   void displayImage(int noteIndex) {
@@ -128,29 +152,75 @@ class _MyHomePageState extends State<MyHomePage> {
                           Text(''),
                           SizedBox(height: 8),
                           ElevatedButton(
-                            onPressed: () async {
-                              // Use FilePicker to allow the user to select an audio file
-                              FilePickerResult? result =
-                                  await FilePicker.platform.pickFiles(
-                                type: FileType.audio,
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Select a Note'),
+                                    content: Container(
+                                      width: 200.0,
+                                      child: ListView.builder(
+                                        itemCount: notesDisplay.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          final note = notesDisplay[index];
+                                          return ListTile(
+                                            title: Text(note),
+                                            onTap: () {
+                                              setState(() {
+                                                selectedNotePath = note;
+                                                notes[noteIndex] =
+                                                    selectedNotePath;
+                                                Navigator.of(context).pop();
+                                              });
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
                               );
-
-                              if (result != null) {
-                                // Handle the selected file(s) in 'result'
-                                // Example: Get the file path
-                                String? filePath = result.files.single.path;
-
-                                // Now you can use 'filePath' to work with the selected audio file
-                                // You may want to pass this path to your audio player or other logic.
-                              }
                             },
                             child: Text('Change Audio'),
                           ),
                           SizedBox(height: 8),
                           ElevatedButton(
                             onPressed: () {
-                              // Handle Change Color
-                              // You can implement logic for changing colors here
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  Color selectedColor = colors[noteIndex];
+                                  return AlertDialog(
+                                    title: Text('Select a Color'),
+                                    content: ColorPicker(
+                                      pickerColor: selectedColor,
+                                      onColorChanged: (Color color) {
+                                        selectedColor = color;
+                                      },
+                                      pickerAreaHeightPercent: 0.8,
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            colors[noteIndex] = selectedColor;
+                                            Navigator.of(context).pop();
+                                          });
+                                        },
+                                        child: Text('OK'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
                             },
                             child: Text('Change Color'),
                           ),
@@ -161,13 +231,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text('Cancel'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('Apply'),
+                          child: Text('Ok'),
                         ),
                       ],
                     );
@@ -190,19 +254,31 @@ class _MyHomePageState extends State<MyHomePage> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (int i = 0; i < colors.length; i++)
-                buildKey(
-                  noteIndex: i,
-                  color: colors[i],
-                  height: h - 30.0 * i,
-                  name: names[i],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (int i = 0; i < colors.length; i++)
+                  buildKey(
+                    noteIndex: i,
+                    color: colors[i],
+                    height: h - 45.0 * i,
+                    name: names[i],
+                  ),
+              ],
+            ),
+            Text(
+              "Press and hold on a tile for customization",
+              style: GoogleFonts.caveat(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
                 ),
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );

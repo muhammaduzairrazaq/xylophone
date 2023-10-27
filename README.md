@@ -68,11 +68,11 @@ In this project I have created a Xylophone app in which you can customize colors
 - The Live Demo link will be available soon!
 
 ## 🖼️ Running App Pictures <a name="pictures"></a>
-- ![image](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/fd98f17f-06d7-4119-b23d-a63ca1758ff9)
-- ![image](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/633e89f5-74e2-4d70-b637-877c85b95ef9)
-- ![image](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/64066022-570d-4e1c-87c2-6b80d5f80ce2)
-- ![image](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/3a9145a9-6660-46c9-97fc-62d6e061b9dc)
-- ![image](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/4993d13e-3397-4a7c-9dfa-ad2c149162e4)
+- ![WhatsApp Image 2023-10-21 at 12 15 22 PM](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/a4d34cce-e8c3-4b3d-a4fd-e085e81672e0)
+- ![WhatsApp Image 2023-10-21 at 12 15 22 PM (1)](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/8aac8183-ec1c-4124-b366-c1f9d46d581c)
+- ![WhatsApp Image 2023-10-21 at 12 15 23 PM](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/6f6eb4f5-e7e2-48b2-bd1f-7d126f8ec9b3)
+- ![WhatsApp Image 2023-10-21 at 12 15 23 PM (1)](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/594b6dd0-5a8a-4608-a15a-bd443d1d0bf1)
+- ![WhatsApp Image 2023-10-21 at 12 15 23 PM (2)](https://github.com/muhammaduzairrazaq/xylophone/assets/138608690/787a92ff-cde4-4c3d-8f24-103e2f7588d7)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

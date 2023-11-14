@@ -1,12 +1,5 @@
 <a name="readme-top"></a>
 
-<div align="center">
-  <br/>
-
-  <h3><b>Profile</b></h3>
-
-</div>
-
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
